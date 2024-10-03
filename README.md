@@ -1,5 +1,7 @@
 # TODOS
 
+a little todo app in sinatra. made this while learning sinatra
+
 ## local setup
 
 ```
