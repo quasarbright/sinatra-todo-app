@@ -10,12 +10,19 @@ class Todo < ActiveRecord::Base
     validates :description, presence: true
 end
 
+before do
+  if not session[:username] and request.path_info != "/login"
+    redirect to('/login')
+  end
+end
+
 get '/' do
+    @items = Todo.where(username: session[:username]).order(done: :asc)
     erb :index
 end
 
 post '/todos' do
-    Todo.create(description: params[:description], done: false)
+    Todo.create(description: params[:description], done: false, username: session[:username])
     redirect back
 end
 
@@ -27,7 +34,7 @@ post '/todos/:id/do' do
 end
 
 post '/todos/clear' do
-    Todo.delete_all
+    Todo.destroy_by(username: session[:username])
     redirect to('/')
 end
 

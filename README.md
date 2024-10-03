@@ -9,3 +9,9 @@ bundle install
 bundle exec rake db:create
 bundle exec rake db:migrate
 ```
+
+to see available rake commands, run
+
+```
+bundle exec rake -T
+```

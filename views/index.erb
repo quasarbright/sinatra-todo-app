@@ -1,14 +1,10 @@
 <h1>To-do list</h1>
 
-<% if session[:username] %>
-  <p>Hello, <%= session[:username] %></p>
-  <form action="/logout" method="POST"><button type="submit">log out</button></form>
-<% else %>
-  <form action="/login" method="GET"><button type="submit">log in</button></form>
-<% end %>
+<p>Hello, <%= session[:username] %></p>
+<form action="/logout" method="POST"><button type="submit">log out</button></form>
 
 <ol>
-    <% Todo.all.each do |item| %>
+    <% @items.each do |item| %>
         <li>
             <%=item.description%>
             <% if item.done%>
