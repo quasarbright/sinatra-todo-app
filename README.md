@@ -15,3 +15,10 @@ to see available rake commands, run
 ```
 bundle exec rake -T
 ```
+
+to run the application,
+
+```
+bundle exec rake generate_secret
+SESSION_SECRET=<the output of the previous command> ruby myapp.rb
+```

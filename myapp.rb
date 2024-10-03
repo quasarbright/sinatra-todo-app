@@ -3,8 +3,7 @@ require 'sinatra/activerecord'
 
 set :database, {adapter: "sqlite3", database: "db/todos.sqlite3"}
 enable :sessions
-# It's really bad to hard-code the session secret for a real application ofc
-set :session_secret, 'c167f882dbc9d9d4a2b6f959e223bc675e8d1c242dd09595d8fe2635535841461ff9c128b27cf031c8cf6d8eb714a7b4bb4012dab8ef5de7d25b46e79d585e70'
+set :session_secret, ENV.fetch('SESSION_SECRET') { SecureRandom.hex(64) }
 
 class Todo < ActiveRecord::Base
     validates :description, presence: true
