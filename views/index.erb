@@ -1,0 +1,30 @@
+<h1>To-do list</h1>
+
+<ol>
+    <% Todo.all.each do |item| %>
+        <li>
+            <%=item.description%>
+            <% if item.done%>
+              (done)
+            <% else %>
+                <form action="/todos/<%=item.id%>/do" method="POST" style="display: inline">
+                    <button type="submit">mark as done</button>
+                </form>
+            <% end %>
+            <br/>
+            <br/>
+        </li>
+    <%end%>
+</ol>
+
+<h2>Add a new item</h2>
+
+<form action="/todos" method="POST">
+    <label for="description">description</label>
+    <input type="text" name="description" autofocus/>
+    <button type="submit">submit</button>
+</form>
+
+<form action="/todos/clear" method="POST">
+    <button type="submit">clear all</button>
+</form>
